@@ -1,3 +1,4 @@
+/* global it describe */
 
 process.env.NODE_ENV = 'test';
 
@@ -22,6 +23,25 @@ describe('app', () => {
                 });
         });
     });
+
+
+    describe('GET /tickets', () => {
+        it('200 HAPPY PATH', (done) => {
+            chai.request(server)
+                .get("/tickets")
+                .end((err, res) => {
+
+                    res.should.have.status(200);
+                    res.body.should.be.an("object");
+                    console.log(res.body.data[0]);
+                    res.body.data[0].should.have.property('trainnumber');
+                    res.body.data[0].should.have.property('traindate');
+
+                    done();
+                });
+        });
+    });
+
 });
 
 module.exports = server;

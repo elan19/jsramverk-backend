@@ -1,7 +1,7 @@
 const database = require('../db/database.js');
 
 const tickets = {
-    getTickets: async function getTickets(req, res){
+    getTickets: async function getTickets(req, res) {
         var db = await database.openDb();
 
         var allTickets = await db.all(`SELECT *, ROWID as id FROM tickets ORDER BY ROWID DESC`);
@@ -13,7 +13,7 @@ const tickets = {
         });
     },
 
-    createTicket: async function createTicket(req, res){
+    createTicket: async function createTicket(req, res) {
         var db = await database.openDb();
 
         const result = await db.run(

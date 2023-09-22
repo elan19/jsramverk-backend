@@ -3,7 +3,8 @@ const collectionName = "keys";
 
 const database = {
     getDb: async function getDb() {
-        let dsn = `mongodb://localhost:27017/auth_mongo`;
+        let dsn = `mongodb+srv://${process.env.ATLAS_USERNAME}:${process.env.ATLAS_PASSWORD}@cluster0.vhdf7it.mongodb.net/?retryWrites=true&w=majority`;
+        //let dsn = `mongodb://localhost:27017/auth_mongo`;
 
 
 
@@ -11,10 +12,7 @@ const database = {
             dsn = "mongodb://localhost:27017/test";
         }
 
-        const client = await mongo.connect(dsn, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        const client = await mongo.connect(dsn, {});
         const db = await client.db();
         const collection = await db.collection(collectionName);
 

@@ -25,12 +25,13 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 const io = require("socket.io")(httpServer, {
   cors: {
-    origin: "http://localhost:9000",
+    //origin: "http://localhost:8080",
+    origin: httpServer,
     methods: ["GET", "POST"]
   }
 });
 
-const port = 1337
+const port = process.env.PORT || 1337;
 
 app.use("/delayed", delayed);
 app.use("/tickets", tickets);

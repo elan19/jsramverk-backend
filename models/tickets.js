@@ -15,8 +15,6 @@ const tickets = {
         });*/
 
         const allTickets = await db.collection.find().toArray();
-        console.log(allTickets);
-        console.log(allTickets[1].code);
 
         return res.json({
             data: allTickets

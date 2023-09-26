@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "nyc --reporter=html --reporter=text mocha 'test/**/*.js'",
+    "test": "nyc --reporter=html --reporter=text mocha 'test/**/*.js' --exit",
     "start": "node app.js",
     "production": "NODE_ENV='production' node app.js",
     "watch": "nodemon app.js"

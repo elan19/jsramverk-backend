@@ -25,20 +25,6 @@ describe('app', () => {
     });
 
 
-    describe('GET /tickets', () => {
-        it('200 GET TICKETS', (done) => {
-            chai.request(server)
-                .get("/tickets")
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.an("object");
-                    res.body.data[0].should.have.property('trainnumber');
-                    res.body.data[0].should.have.property('traindate');
-                    done();
-                });
-        });
-    });
-
     describe('POST /tickets', () => {
         it('200 POST TICKETS', (done) => {
 
@@ -53,6 +39,21 @@ describe('app', () => {
                 .send(ticketData)
                 .end((err, res) => {
                     res.should.have.status(200);
+                    done();
+                });
+        });
+    });
+
+
+    describe('GET /tickets', () => {
+        it('200 GET TICKETS', (done) => {
+            chai.request(server)
+                .get("/tickets")
+                .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.an("object");
+                    res.body.data[0].should.have.property('trainnumber');
+                    res.body.data[0].should.have.property('traindate');
                     done();
                 });
         });

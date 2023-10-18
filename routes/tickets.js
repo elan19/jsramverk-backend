@@ -7,4 +7,6 @@ router.get('/', (req, res) => tickets.getTickets(req, res));
 
 router.post('/', (req, res) => tickets.createTicket(req, res));
 
+router.put('/:ticketId', (req, res) => tickets.updateTicket(req, res));
+
 module.exports = router;

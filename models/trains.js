@@ -13,17 +13,17 @@ async function fetchTrainPositions(io) {
 
     const response = await fetch(
         "https://api.trafikinfo.trafikverket.se/v2/data.json", {
-            method: "POST",
-            body: query,
-            headers: { "Content-Type": "text/xml" }
-        }
+        method: "POST",
+        body: query,
+        headers: { "Content-Type": "text/xml" }
+    }
     )
     const result = await response.json()
     const sseurl = result.RESPONSE.RESULT[0].INFO.SSEURL
 
     const eventSource = new EventSource(sseurl)
 
-    eventSource.onopen = function() {
+    eventSource.onopen = function () {
         console.log("Connection to server opened.")
     }
 
@@ -40,7 +40,7 @@ async function fetchTrainPositions(io) {
 
                     const matchCoords = /(\d*\.\d+|\d+),?/g
 
-                    const position = changedPosition.Position.WGS84.match(matchCoords).map((t=>parseFloat(t))).reverse()
+                    const position = changedPosition.Position.WGS84.match(matchCoords).map((t => parseFloat(t))).reverse()
 
                     const trainObject = {
                         trainnumber: changedPosition.Train.AdvertisedTrainNumber,
@@ -67,7 +67,7 @@ async function fetchTrainPositions(io) {
 
 
 
-    eventSource.onerror = function(e) {
+    eventSource.onerror = function (e) {
         console.log("EventSource failed.")
     }
 }

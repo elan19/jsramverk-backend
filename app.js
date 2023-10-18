@@ -14,6 +14,21 @@ const user = require('./routes/user.js');
 const app = express()
 const httpServer = require("http").createServer(app);
 
+const visual = true;
+const { graphqlHTTP } = require('express-graphql');
+const {
+  GraphQLSchema
+} = require("graphql");
+
+const RootQueryType = require("./graphql/root.js");
+const schema = new GraphQLSchema({
+  query: RootQueryType
+});
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  graphiql: visual, // Visual är satt till true under utveckling
+}));
+
 app.use(cors());
 app.options('*', cors());
 
@@ -36,6 +51,7 @@ app.use("/delayed", delayed);
 app.use("/tickets", tickets);
 app.use("/codes", codes);
 app.use("/user", user);
+
 
 httpServer.listen(port, () => {
   console.log(`Example app listening on port ${port}`)

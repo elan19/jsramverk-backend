@@ -19,7 +19,7 @@
     "eventsource": "^2.0.2",
     "express": "^4.18.2",
     "express-graphql": "^0.12.0",
-    "graphql": "^16.8.1",
+    "graphql": "^15.8.0",
     "mongodb": "^6.0.0",
     "morgan": "^1.10.0",
     "node-fetch": "^2.6.1",

@@ -24,10 +24,6 @@ const RootQueryType = require("./graphql/root.js");
 const schema = new GraphQLSchema({
   query: RootQueryType
 });
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  graphiql: visual, // Visual är satt till true under utveckling
-}));
 
 app.use(cors());
 app.options('*', cors());
@@ -47,6 +43,10 @@ const io = require("socket.io")(httpServer, {
 
 const port = process.env.PORT || 1337;
 
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  graphiql: visual,
+}));
 app.use("/delayed", delayed);
 app.use("/tickets", tickets);
 app.use("/codes", codes);
